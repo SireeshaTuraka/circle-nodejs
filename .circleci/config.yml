@@ -6,23 +6,23 @@ jobs:
   build_and_test:
     executor: node/default
   steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run: 
-         command: npm run test
+    - checkout
+    - node/install-packages:
+        pkg-manager: npm
+    - run: 
+       command: npm run test
          name: Run tests
-      - run:
-          command: npm run build
-          name: Build app
-      - persist_to_workspace:
-           root: ~/project
-           paths:
-             - .
+    - run:
+        command: npm run build
+         name: Build app
+    - persist_to_workspace:
+        root: ~/project
+         paths:
+          - .
 
   deploy:
     executor: npm/default
-  steps:
+  other_steps:
     - attach_workspace:
         at: ~/project
         force: true
