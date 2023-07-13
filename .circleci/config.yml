@@ -5,8 +5,7 @@ orbs:
 jobs:
   build_and_test:
     executor: node/default
-
-    steps:
+     steps:
       -  checkout
       - node/install-packages:
           pkg-manager: npm
@@ -21,8 +20,8 @@ jobs:
            paths:
              - .
 
-deploy:
-  executor: npm/default
+  deploy:
+    executor: npm/default
   steps:
     - attach_workspace:
         at: ~/project
@@ -30,7 +29,7 @@ deploy:
 
 
 workflows:
-  test_my_app:
+  test_MyApp:
      jobs:
       - build_and_test
       - deploy:
