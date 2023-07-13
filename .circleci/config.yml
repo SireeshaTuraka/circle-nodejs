@@ -20,13 +20,6 @@ jobs:
           paths:
             - ...
 
-  deploy:
-    executor: npm/default
-    steps:
-      - attach_workspace:
-          at: ~/project
-          force: true
-
 workflows:
   test_my_app:
     jobs:
