@@ -28,7 +28,7 @@ jobs:
           force: true
 
 workflows:
-  test_MyApp:
+  test_my_app:
     jobs:
       - build_and_test
       - deploy:
