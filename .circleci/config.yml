@@ -5,8 +5,8 @@ orbs:
 jobs:
   build_and_test:
     executor: node/default
-     steps:
-      -  checkout
+  steps:
+      - checkout
       - node/install-packages:
           pkg-manager: npm
       - run: 
