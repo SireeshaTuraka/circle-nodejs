@@ -5,40 +5,39 @@ orbs:
 jobs:
   build_and_test:
     executor: node/default
-  steps:
-    - checkout
-    - node/install-packages:
-        pkg-manager: npm
-    - run: 
-       command: npm run test
-         name: Run tests
-    - run:
-        command: npm run build
-         name: Build app
-    - persist_to_workspace:
-        root: ~/project
-         paths:
-          - .
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm run test
+          name: Run tests
+      - run:
+          command: npm run build
+          name: Build app
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ...
 
   deploy:
     executor: npm/default
-  other_steps:
-    - attach_workspace:
-        at: ~/project
-        force: true
-
+    steps:
+      - attach_workspace:
+          at: ~/project
+          force: true
 
 workflows:
   test_MyApp:
-     jobs:
+    jobs:
       - build_and_test
       - deploy:
           requires:
-             - build_and_test
-
+            - build_and_test
           filters:
-             branches:
-               only: main
+            branches:
+              only: main
+
 
 
        
